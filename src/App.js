@@ -1,45 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-const saludar = () => null
+// import Noticias from './components/Noticias.js'
+// import { Noticias } from './components/Noticias/Noticias.js';
+import { Contenedor } from './components/Contenedor/Contenedor.js';
+import { Presentacion } from './components/Presentacion.js';
+// import { Tutores } from './components/Tutores/Tutores.js';
 
 function App() {
 
-  const profesor = 'Conrado Lanusse'
-  const tutor = 'Santiago Rivarola'
-
-  const estilos = {
-    color: 'red',
-    marginTop: '20px'
-  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p style={estilos}>
-          Bienvenidos a React JS
-        </p>
-        <hr/>
-        <h4>Profe { profesor }</h4>
-        <h5>{ saludar() }</h5>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Nabvar />
+      <ItemListContainer greeting="mensaje"/> */}
 
-      <section>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-      </section>
+      <Contenedor>
+        <Presentacion nombre="Conrado Lanusse" rol="Profesor" edad={31}/>
+        <Presentacion nombre="Rodrigo Maestre" rol="Tutor Adjunto" edad={26}/>
+        <Presentacion  rol="Tutor Regular" edad={45} nombre="Santiago"/>
+      </Contenedor>
+
     </div>
   );
 }
