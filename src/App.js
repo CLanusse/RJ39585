@@ -1,22 +1,20 @@
-// import Noticias from './components/Noticias.js'
-// import { Noticias } from './components/Noticias/Noticias.js';
-import { Contenedor } from './components/Contenedor/Contenedor.js';
-import { Presentacion } from './components/Presentacion.js';
-// import { Tutores } from './components/Tutores/Tutores.js';
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-
   return (
     <div>
-      {/* <Nabvar />
-      <ItemListContainer greeting="mensaje"/> */}
+      <Navbar />
 
-      <Contenedor>
-        <Presentacion nombre="Conrado Lanusse" rol="Profesor" edad={31}/>
-        <Presentacion nombre="Rodrigo Maestre" rol="Tutor Adjunto" edad={26}/>
-        <Presentacion  rol="Tutor Regular" edad={45} nombre="Santiago"/>
-      </Contenedor>
+      <ItemListContainer greeting="Hola mundo" />
+
+      <div className="container">
+        {/* <button className="btn btn-primary">Click me</button> */}
+        <Button variant="success" size="lg">Click me! =) </Button>
+      </div>
 
     </div>
   );
