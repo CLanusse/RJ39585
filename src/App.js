@@ -1,20 +1,27 @@
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Button } from "react-bootstrap";
+import Contador from "./ejemplos/Contador/Contador";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
 
 function App() {
+  const [show, setShow] = useState(true)
+
+  const handleShow = () => {
+    setShow(!show)
+  }
 
   return (
     <div>
       <Navbar />
 
-      <ItemListContainer greeting="Hola mundo" />
+      <button onClick={handleShow} className="btn btn-danger">Mostrar contador</button>
 
-      <div className="container">
-        {/* <button className="btn btn-primary">Click me</button> */}
-        <Button variant="success" size="lg">Click me! =) </Button>
-      </div>
+      {
+        show ? <Contador /> : null
+      }
+
+      <ItemListContainer greeting="Hola mundo" />
 
     </div>
   );
