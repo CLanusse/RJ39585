@@ -1,19 +1,25 @@
 import './Navbar.scss'
 import logo from './logo.png'
+import { Link } from 'react-router-dom'
 
-export const Navbar = () => {
+export const Navbar = ({black}) => {
 
     return (
-        <header className="header">
+        <header className="header" style={{backgroundColor: black ? '#000000' : '#600027c5'}}>
             <div className="header__container">
                 {/* <h1 className="header__logo">LOGO</h1> */}
                 {/* <img src='./imgs/logo.png' alt="logo" className='header__logo'/> */}
-                <img src={logo} alt="logo" className='header__logo'/>
+                <Link to="/">
+                    <img src={logo} alt="logo" className='header__logo'/>
+                </Link>
 
                 <nav className="navbar">
-                    <a href="#" className="navbar__link">Enlace 1</a>
-                    <a href="#" className="navbar__link">Enlace 2</a>
-                    <a href="#" className="navbar__link">Enlace 3</a>
+                    <Link to="/" className="navbar__link">Inicio</Link>
+                    <Link to="/productos/perfumeria" className="navbar__link">Perfumeria</Link>
+                    <Link to="/productos/panaderia" className="navbar__link">Panaderia</Link>
+                    <Link to="/productos/verduleria" className="navbar__link">Verduleria</Link>
+                    <Link to="/nosotros" className="navbar__link">Nosotros</Link>
+                    <Link to="/contacto" className="navbar__link">Contacto</Link>
                 </nav>
 
                 {/* <CartWidget /> */}
