@@ -20,7 +20,6 @@ function App() {
           <Route path="/detail/:itemId" element={ <ItemDetailContainer /> }/>
           <Route path="/nosotros" element={ <Nosotros /> } />
           <Route path="/contacto" element={ <Contacto /> } />
-          <Route path="/pokemon" element={ <PokeApi />} />
           <Route path="*" element={ <Navigate to="/" /> }/>
           {/* <Route path="*" element={ <Error404 /> }/> */}
         </Routes>
