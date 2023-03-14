@@ -1,6 +1,7 @@
 import './Navbar.scss'
 import logo from './logo.png'
 import { Link } from 'react-router-dom'
+import CartWidget from '../CartWidget/CartWidget'
 
 export const Navbar = ({black}) => {
 
@@ -23,8 +24,8 @@ export const Navbar = ({black}) => {
                     <Link to="/nosotros" className="navbar__link">Nosotros</Link>
                     <Link to="/contacto" className="navbar__link">Contacto</Link>
                 </nav>
-
-                {/* <CartWidget /> */}
+    
+                <CartWidget />
             </div>
         </header>
     )
