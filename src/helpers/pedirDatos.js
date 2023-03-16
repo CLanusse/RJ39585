@@ -5,7 +5,7 @@ export const pedirDatos = () => {
         // cuerpo de la promesa
         setTimeout(() => {
             resolve(MOCK_DATA)
-        }, 1500)
+        }, 500)
     })
 }
 
@@ -14,6 +14,6 @@ export const pedirProductoPorId = (id) => {
         // cuerpo de la promesa
         setTimeout(() => {
             resolve(MOCK_DATA.find(prod => prod.id === id))
-        }, 1500)
+        }, 500)
     })
 }

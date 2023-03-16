@@ -1,8 +1,10 @@
-import { useContext, useState } from "react"
+import { useContext, useMemo, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { CartContext } from "../../context/CartContext"
 // import ColorPicker from "../../ejemplos/ColorPicker/ColorPicker"
 import ItemCount from "../ItemCount/ItemCount"
+import LowStockMsg from "./LowStockMsg"
+import Memo from "./Memo"
 
 
 // const colores = [
@@ -47,6 +49,8 @@ const ItemDetail = ({item}) => {
         agregarAlCarrito(newItem)
     }
 
+    const fechaMontaje = useMemo(() => new Date().toLocaleString(), [])
+
     return (
         <div className="container my-5">
             <h2>{item.name}</h2>
@@ -54,6 +58,10 @@ const ItemDetail = ({item}) => {
             <p>{item.description}</p>
             <p>Precio: ${item.price}</p>
             {/* <ColorPicker setColor={setColor} options={colores}/> */}
+            { item.stock <= 5 && <LowStockMsg stock={item.stock}/>}
+
+            <p>{fechaMontaje}</p>
+            <Memo />
 
             {
                 isInCart(item.id)
