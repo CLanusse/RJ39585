@@ -61,7 +61,7 @@ const ItemDetail = ({item}) => {
             { item.stock <= 5 && <LowStockMsg stock={item.stock}/>}
 
             <p>{fechaMontaje}</p>
-            <Memo />
+            {/* <Memo /> */}
 
             {
                 isInCart(item.id)
