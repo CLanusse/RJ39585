@@ -1,11 +1,14 @@
 import { useContext, useState } from "react"
-import { Navigate } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { CartContext } from "../../context/CartContext"
+import { db } from "../../firebase/config"
+import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore"
 
 
 const Checkout = () => {
-    const { cart, totalCompra } = useContext(CartContext)
+    const { cart, totalCompra, vaciarCarrito } = useContext(CartContext)
 
+    const [orderId, setOrderId] = useState(null)
     const [values, setValues] = useState({
         nombre: '',
         direccion: '',
@@ -44,11 +47,51 @@ const Checkout = () => {
         }
 
         console.log("Submit", orden)
+
+        const productosRef = collection(db, 'productos')
+
+        cart.forEach((item) => {
+            const docRef = doc(productosRef, item.id)
+
+            getDoc(docRef)
+                .then((doc) => {
+                    if (doc.data().stock >= item.cantidad) {
+                        updateDoc(docRef, {
+                            stock: doc.data().stock - item.cantidad
+                        })
+                    } else {
+                        alert("No hay stock de " + item.name)
+                    }
+                })
+
+        })
+
+        const ordersRef = collection(db, 'orders')
+        addDoc(ordersRef, orden)
+            .then((doc) => {
+                setOrderId(doc.id)
+                vaciarCarrito()
+            })
+
+        // 1.- verificar el stock disponible de toda la compra
+        // 2.- si está ok, actualizo stock + genero la orden
     }
 
+
+    if (orderId) {
+        return (
+            <div className="container my-5">
+                <h2>Tu orden se registró con éxito!</h2>
+                <hr/>
+                <p>Guarda tu número de orden: {orderId}</p>
+                <Link className="btn btn-primary my-3" to="/">Volver al inicio</Link>
+            </div>
+        )
+    }
+    
     if (cart.length === 0) {
         return <Navigate to="/"/>
-    }
+    } 
 
     return (
         <div className="container my-5">
