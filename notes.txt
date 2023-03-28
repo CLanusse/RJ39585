@@ -106,3 +106,28 @@ export const LoginProvider = ({children}) => {
         </LoginContext.Provider>
     )
 }
+
+
+/////////////////////////////////
+
+const batch = writeBatch(db)
+        const ordersRef = collection(db, 'orders')
+        const productosRef = collection(db, 'productos')
+        
+        const outOfStock = []
+        
+        const itemsRef = query( productosRef, where( documentId(), 'in', cart.map(prod => prod.id) ) )
+  
+        const productos = await getDocs(itemsRef)
+        
+        productos.docs.forEach(doc => {
+                const item = cart.find(item => item.id === doc.id)
+
+                if (doc.data().stock >= item.cantidad) {
+                    batch.update(doc.ref, {
+                        stock: doc.data().stock - item.cantidad
+                    })
+                } else {
+                    outOfStock.push(item)
+                }
+        })
